@@ -34,6 +34,50 @@ app.post('/facebook/', function (req, res) {
             text = event.message.text.substring(0, 200);
 
 
+
+            request({
+                url: 'https://api.api.ai/api/query',
+                qs: {"Authorization":"Bearer "+(process.env.API_AI_ACCESS_TOKEN || ENV["API_AI_ACCESS_TOKEN"])},
+                params: {"lang":"en", "timezone":"America/Los_Angeles", "v":"20150910", "query":text},
+                method: 'GET'
+            },
+            function(error, response, body) {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                }
+                else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                }
+                else {
+
+
+
+                    text = response['result']['fulfillment']['speech'];
+                    request({
+                        url: 'https://graph.facebook.com/v2.6/me/messages',
+                        qs: {"access_token":(process.env.FB_ACCESS_TOKEN || ENV["FB_ACCESS_TOKEN"])},
+                        method: 'POST',
+                        json: {
+                            "recipient":{"id":sender},
+                            "message":{"text":text}
+                        }
+                    },
+                    function(error, response, body) {
+                        if (error) {
+                            console.log('Error sending message: ', error);
+                        }
+                        else if (response.body.error) {
+                            console.log('Error: ', response.body.error);
+                        }
+                    });
+
+
+
+                }
+
+            });
+
+/*
             request({
                 url: 'https://graph.facebook.com/v2.6/me/messages',
                 qs: {"access_token":(process.env.FB_ACCESS_TOKEN || ENV["FB_ACCESS_TOKEN"])},
@@ -51,7 +95,7 @@ app.post('/facebook/', function (req, res) {
                     console.log('Error: ', response.body.error);
                 }
             });
-
+*/
 
 
         }
