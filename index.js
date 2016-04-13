@@ -35,7 +35,7 @@ app.post('/facebook/', function (req, res) {
             text = event.message.text.substring(0, 200);
 
 
-
+/*
             request({
                 url: 'https://api.api.ai/api/query',
                 headers: {"Authorization":"Bearer "+(process.env.API_AI_ACCESS_TOKEN || ENV["API_AI_ACCESS_TOKEN"])},
@@ -50,9 +50,8 @@ app.post('/facebook/', function (req, res) {
                     console.log('Error: ', response.body.error);
                 }
                 else {
-
-
                    text = response.body['result']['fulfillment']['speech'];
+*/
 
                    request({
                         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -73,11 +72,11 @@ app.post('/facebook/', function (req, res) {
                     });
 
 
-
+/*
                 }
 
             });
-
+*/
 
 
         }
