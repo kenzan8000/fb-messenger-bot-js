@@ -52,7 +52,7 @@ app.post('/facebook/', function (req, res) {
 
 
 
-                    text = response['result']['fulfillment']['speech'];
+                    text = response.body['result']['speech'];
                     request({
                         url: 'https://graph.facebook.com/v2.6/me/messages',
                         qs: {"access_token":(process.env.FB_ACCESS_TOKEN || ENV["FB_ACCESS_TOKEN"])},
@@ -70,7 +70,6 @@ app.post('/facebook/', function (req, res) {
                             console.log('Error: ', response.body.error);
                         }
                     });
-
 
 
                 }
@@ -96,6 +95,7 @@ app.post('/facebook/', function (req, res) {
                 }
             });
 */
+
 
 
         }
