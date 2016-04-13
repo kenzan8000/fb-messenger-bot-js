@@ -26,6 +26,7 @@ app.get('/facebook/', function(req, res) {
 });
 
 app.post('/facebook/', function (req, res) {
+
     messaging_events = req.body.entry[0].messaging;
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i];
@@ -33,7 +34,7 @@ app.post('/facebook/', function (req, res) {
         if (event.message && event.message.text) {
             text = event.message.text.substring(0, 200);
 
-
+/*
 
             request({
                 url: 'https://api.api.ai/api/query',
@@ -49,11 +50,10 @@ app.post('/facebook/', function (req, res) {
                     console.log('Error: ', response.body.error);
                 }
                 else {
+*/
 
 
-
-                    text = response.body['result']['speech'];
-                    request({
+                   request({
                         url: 'https://graph.facebook.com/v2.6/me/messages',
                         qs: {"access_token":(process.env.FB_ACCESS_TOKEN || ENV["FB_ACCESS_TOKEN"])},
                         method: 'POST',
@@ -72,30 +72,11 @@ app.post('/facebook/', function (req, res) {
                     });
 
 
-                }
-
-            });
-
 /*
-            request({
-                url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {"access_token":(process.env.FB_ACCESS_TOKEN || ENV["FB_ACCESS_TOKEN"])},
-                method: 'POST',
-                json: {
-                    "recipient":{"id":sender},
-                    "message":{"text":text}
                 }
-            },
-            function(error, response, body) {
-                if (error) {
-                    console.log('Error sending message: ', error);
-                }
-                else if (response.body.error) {
-                    console.log('Error: ', response.body.error);
-                }
+
             });
 */
-
 
 
         }
