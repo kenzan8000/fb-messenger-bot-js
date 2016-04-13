@@ -1,0 +1,6 @@
+{
+  "name": "fb-messenger-bot",
+  "description": "test",
+  "repository": "https://github.com/kenzan8000/fb-messenger-bot",
+  "keywords": ["node", "express", "static"]
+}

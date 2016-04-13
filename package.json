@@ -1,0 +1,28 @@
+{
+  "name": "fb-messenger-bot",
+  "version": "0.1.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.0",
+    "express": "~4.13.3",
+    "request": "~2.71.0"
+  },
+  "engines": {
+    "node": "5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenzan8000/fb-messenger-bot"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "graph api"
+  ],
+  "license": "MIT"
+}
