@@ -37,9 +37,9 @@ app.post('/facebook/', function (req, res) {
 
             request({
                 url: 'https://api.api.ai/api/query',
-                qs: {"Authorization":"Bearer "+(process.env.API_AI_ACCESS_TOKEN || ENV["API_AI_ACCESS_TOKEN"])},
-                params: {"lang":"en", "timezone":"America/Los_Angeles", "v":"20150910", "query":text},
-                method: 'GET'
+                headers: {"Authorization":"Bearer "+(process.env.API_AI_ACCESS_TOKEN || ENV["API_AI_ACCESS_TOKEN"])},
+                json: {"lang":"en", "timezone":"America/Los_Angeles", "v":"20150910", "query":text},
+                method: 'POST'
             },
             function(error, response, body) {
                 if (error) {
